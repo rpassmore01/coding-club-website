@@ -2,6 +2,8 @@ import styles from "../styles/Home.module.css";
 import axios from "axios";
 import { useState } from "react";
 
+// add some cool comments
+
 export default function Home() {
   const [text, setText] = useState("");
 
