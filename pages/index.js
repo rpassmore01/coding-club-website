@@ -6,12 +6,12 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export default function Home() {
-  const [announcements, setAnnouncements] = useState([]);
+  const [announcements, setAnnouncements] = useState(null);
 
   useEffect(() => {
     axios.get("/api/announcements").then((res) => {
-      setAnnouncements(res.data.message);
-      console.log(announcements);
+      setAnnouncements(res);
+      console.log(res);
     });
   }, []);
 

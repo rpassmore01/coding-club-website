@@ -15,10 +15,7 @@ export default async function handler(req, res) {
 async function getAnnouncements(req, res, db) {
   try {
     const myDoc = await db.collection("announcements").find({}).toArray();
-    return res.json({
-      message: myDoc,
-      success: true,
-    });
+    return res.json(myDoc);
   } catch (err) {
     return res.json({
       message: new Error(err).message,
@@ -29,9 +26,7 @@ async function getAnnouncements(req, res, db) {
 
 async function addAnnouncements(req, res, db) {
   try {
-    await db.collection("announcements").insertOne({
-      test: req.body.text,
-    });
+    await db.collection("announcements").insertOne(req.body);
     return res.json({
       success: true,
     });
