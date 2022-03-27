@@ -27,6 +27,7 @@ export default function Home() {
               name={item.name}
               date={item.date}
               body={item.body}
+              key={index}
             ></Announcement>
           );
         })
