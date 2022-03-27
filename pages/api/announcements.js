@@ -14,7 +14,10 @@ export default async function handler(req, res) {
 
 async function getAnnouncements(req, res, db) {
   try {
-    const myDoc = await db.collection("announcements").find({}).toArray();
+    const myDoc = await db
+      .collection("announcements")
+      .find({ announcement: true })
+      .toArray();
     return res.json(myDoc);
   } catch (err) {
     return res.json({

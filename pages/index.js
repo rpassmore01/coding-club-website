@@ -18,14 +18,18 @@ export default function Home() {
   return (
     <div>
       {announcements == null ? (
-        <p></p>
+        <p>No Announcements to Display...</p>
       ) : (
-        <Announcement
-          tittle={announcements.data[5].tittle}
-          name={announcements.data[5].name}
-          body={announcements.data[5].body}
-          date={announcements.data[5].date}
-        ></Announcement>
+        announcements.data.map((item, index) => {
+          return (
+            <Announcement
+              tittle={item.tittle}
+              name={item.name}
+              date={item.date}
+              body={item.body}
+            ></Announcement>
+          );
+        })
       )}
     </div>
   );
