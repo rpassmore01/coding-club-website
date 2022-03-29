@@ -33,7 +33,7 @@ export default function AnnouncementForm() {
           onChange={(e) => setName(e.target.value)}
           className="border-solid border-2 border-black"
         ></input>
-        <h2>Tittle:</h2>
+        <h2>Title:</h2>
         <input
           type="text"
           onChange={(e) => setTitle(e.target.value)}
