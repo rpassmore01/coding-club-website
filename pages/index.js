@@ -21,9 +21,10 @@ export default function Home() {
         <p>No Announcements to Display...</p>
       ) : (
         announcements.data.map((item, index) => {
+          console.log(item.title);
           return (
             <Announcement
-              tittle={item.tittle}
+              title={item.title}
               name={item.name}
               date={item.date}
               body={item.body}
