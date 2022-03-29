@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function AnnouncementForm() {
   const [name, setName] = useState("");
-  const [tittle, setTittle] = useState("");
+  const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
   function submitForm() {
@@ -16,7 +16,7 @@ export default function AnnouncementForm() {
       day: "numeric",
     };
     axios.post("/api/announcements", {
-      tittle: tittle,
+      title: title,
       name: name,
       body: message,
       date: today.toLocaleDateString(undefined, options),
@@ -33,10 +33,10 @@ export default function AnnouncementForm() {
           onChange={(e) => setName(e.target.value)}
           className="border-solid border-2 border-black"
         ></input>
-        <h2>Tittle:</h2>
+        <h2>Title:</h2>
         <input
           type="text"
-          onChange={(e) => setTittle(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
           className="border-solid border-2 border-black"
         ></input>
         <h2>Body:</h2>

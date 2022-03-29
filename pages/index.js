@@ -23,7 +23,7 @@ export default function Home() {
         announcements.data.map((item, index) => {
           return (
             <Announcement
-              tittle={item.tittle}
+              title={item.title}
               name={item.name}
               date={item.date}
               body={item.body}
