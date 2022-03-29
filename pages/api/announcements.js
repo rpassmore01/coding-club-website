@@ -14,17 +14,17 @@ export default async function handler(req, res) {
 
 class AnnouncementSubmission {
   /**
-   * The title of the annoucement.
+   * The title of the announcement.
    */
   title;
 
   /**
-   * The author of the annoucement.
+   * The author of the announcement.
    */
   name;
 
   /**
-   * The content of the annoucement.
+   * The content of the announcement.
    */
   body;
 
@@ -82,12 +82,12 @@ class AnnouncementSubmission {
 
 async function getAnnouncements(req, res, db) {
   try {
-    const annoucements = await db
+    const announcements = await db
       .collection("announcements")
       .find({ announcement: true })
       .toArray();
     return res.status(200).json({
-      data: annoucements,
+      data: announcements,
       success: true,
     });
   } catch (err) {
@@ -116,10 +116,10 @@ async function addAnnouncements(req, res, db) {
       month: "long",
       day: "numeric",
     };
-    const annoucement = new Announcement(submission.title, submission.name, submission.body, today.toLocaleDateString(undefined, options), true)
-    await db.collection("announcements").insertOne(annoucement);
+    const announcement = new Announcement(submission.title, submission.name, submission.body, today.toLocaleDateString(undefined, options), true)
+    await db.collection("announcements").insertOne(announcement);
     return res.status(200).json({
-      data: annoucement,
+      data: announcement,
       success: true,
     });
   } catch (err) {
