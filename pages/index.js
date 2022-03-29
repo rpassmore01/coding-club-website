@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     axios.get("/api/announcements").then((res) => {
-      setAnnouncements(res);
+      setAnnouncements(res.data);
     });
   }, []);
 
