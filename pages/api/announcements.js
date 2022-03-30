@@ -28,13 +28,28 @@ class AnnouncementSubmission {
    */
   body;
 
-  constructor(title, name, body) {
+  /**
+   * The date of the announcement.
+   */
+  date;
+
+  constructor(title, name, body, date) {
     this.title = title;
     this.name = name;
     this.body = body;
+    this.date = date;
   }
 
   static parse(obj) {
+    const today = new Date();
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const date = today.toLocaleDateString(undefined, options);
+
     if (obj === null || obj.constructor !== Object) {
       throw new Error("Bad submission: must be an object");
     }
@@ -73,10 +88,14 @@ class AnnouncementSubmission {
     }
 
     if (Object.getOwnPropertyNames(obj).length !== 0) {
-      throw new Error(`Bad submission: unexpected properties: ${Object.getOwnPropertyNames(obj)}`);
+      throw new Error(
+        `Bad submission: unexpected properties: ${Object.getOwnPropertyNames(
+          obj
+        )}`
+      );
     }
 
-    return new AnnouncementSubmission(title, name, body);
+    return new AnnouncementSubmission(title, name, body, date);
   }
 }
 
@@ -84,7 +103,7 @@ async function getAnnouncements(req, res, db) {
   try {
     const announcements = await db
       .collection("announcements")
-      .find({ announcement: true })
+      .find({})
       .toArray();
     return res.status(200).json({
       data: announcements,
@@ -109,20 +128,13 @@ async function addAnnouncements(req, res, db) {
     });
   }
   try {
-    const today = new Date();
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    const announcement = new Announcement(submission.title, submission.name, submission.body, today.toLocaleDateString(undefined, options), true)
-    await db.collection("announcements").insertOne(announcement);
+    await db.collection("announcements").insertOne(submission);
     return res.status(200).json({
-      data: announcement,
+      data: submission,
       success: true,
     });
   } catch (err) {
+    console.log(err);
     return res.status(500).json({
       message: new Error(err).message,
       success: false,
