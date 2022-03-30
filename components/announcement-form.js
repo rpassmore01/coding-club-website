@@ -8,7 +8,6 @@ export default function AnnouncementForm() {
   const [message, setMessage] = useState("");
 
   function submitForm(event) {
-    event.preventDefault();
     axios.post("/api/announcements", {
       title: title,
       name: name,
@@ -20,7 +19,8 @@ export default function AnnouncementForm() {
     <div>
       <form onSubmit={submitForm}>
         <div>
-          <label htmlFor="name">Name:</label><br />
+          <label htmlFor="name">Name:</label>
+          <br />
           <input
             required
             name="name"
@@ -31,7 +31,8 @@ export default function AnnouncementForm() {
           ></input>
         </div>
         <div>
-          <label htmlFor="title">Title:</label><br />
+          <label htmlFor="title">Title:</label>
+          <br />
           <input
             required
             name="title"
@@ -42,7 +43,8 @@ export default function AnnouncementForm() {
           ></input>
         </div>
         <div>
-          <label htmlFor="body">Body:</label><br />
+          <label htmlFor="body">Body:</label>
+          <br />
           <input
             required
             name="body"
