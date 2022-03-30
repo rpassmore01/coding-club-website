@@ -11,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     axios.get("/api/announcements").then((res) => {
-      setAnnouncements(res);
+      setAnnouncements(res.data);
     });
   }, []);
 
@@ -21,12 +21,14 @@ export default function Home() {
         <p>No Announcements to Display...</p>
       ) : (
         announcements.data.map((item, index) => {
+          console.log(item.title);
           return (
             <Announcement
-              tittle={item.tittle}
+              title={item.title}
               name={item.name}
               date={item.date}
               body={item.body}
+              key={index}
             ></Announcement>
           );
         })
