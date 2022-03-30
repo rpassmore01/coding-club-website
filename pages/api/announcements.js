@@ -8,7 +8,7 @@ export default async function handler(req, res) {
       return getAnnouncements(req, res, db);
     }
     case "POST": {
-      return addAnnouncements(req, res, db);
+      return addAnnouncement(req, res, db);
     }
   }
 }
@@ -31,7 +31,7 @@ async function getAnnouncements(req, res, db) {
   }
 }
 
-async function addAnnouncements(req, res, db) {
+async function addAnnouncement(req, res, db) {
   let submission;
   try {
     submission = AnnouncementSubmission.parse(req.body);
