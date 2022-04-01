@@ -4,13 +4,11 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Announcement from "../components/announcement";
 
-export default function Home() {
+function Home({ data }) {
   const [announcements, setAnnouncements] = useState(null);
 
   useEffect(() => {
-    axios.get("/api/announcements").then((res) => {
-      setAnnouncements(res.data);
-    });
+    setAnnouncements(data)
   }, []);
 
   return (
@@ -34,3 +32,17 @@ export default function Home() {
     </div>
   );
 }
+
+export async function getStaticProps(){
+  
+  const res = await fetch("http://localhost:3000/api/announcements")
+  const data = await res.json()
+
+  return {
+    props: {
+      data
+    }
+  }
+}
+
+export default Home
