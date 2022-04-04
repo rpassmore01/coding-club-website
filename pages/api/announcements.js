@@ -45,7 +45,6 @@ async function addAnnouncement(req, res, db) {
   try {
     await db.collection("announcements").insertOne(submission);
     return res.status(200).json({
-      data: submission,
       success: true,
     });
   } catch (err) {

@@ -3,7 +3,7 @@ import AnnouncementsPanel from "../components/announcements-panel";
 export default function Home({ data }){
     return (
         <div>
-            <AnnouncementsPanel data={data}></AnnouncementsPanel>
+            <AnnouncementsPanel data={data} delete={false}></AnnouncementsPanel>
         </div>
     )
 }

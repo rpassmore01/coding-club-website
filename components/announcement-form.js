@@ -7,17 +7,24 @@ export default function AnnouncementForm() {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
-  function submitForm(event) {
+  function submitForm(e) {
+    e.preventDefault()
     axios.post("/api/announcements", {
       title: title,
       name: name,
       body: message,
-    });
+    }).then(
+      location.reload()
+    ).catch(
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 
   return (
     <div>
-      <form onSubmit={submitForm}>
+      <form onSubmit={e => submitForm(e)}>
         <div>
           <label htmlFor="name">Name:</label>
           <br />

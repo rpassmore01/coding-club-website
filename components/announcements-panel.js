@@ -17,7 +17,6 @@ function AnnouncementsPanel(props) {
         <p>No Announcements to Display...</p>
       ) : (
         announcements.data.map((item, index) => {
-          console.log(item.title);
           return (
             <Announcement
               title={item.title}
@@ -25,6 +24,8 @@ function AnnouncementsPanel(props) {
               date={item.date}
               body={item.body}
               key={index}
+              delete={props.delete}
+              id={item._id}
             ></Announcement>
           );
         })
