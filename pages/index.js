@@ -1,36 +1,21 @@
-import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import axios from "axios";
-import { useState } from "react";
-import { useEffect } from "react";
-import Announcement from "../components/announcement";
+import AnnouncementsPanel from "../components/announcements-panel";
 
-export default function Home() {
-  const [announcements, setAnnouncements] = useState(null);
-
-  useEffect(() => {
-    axios.get("/api/announcements").then((res) => {
-      setAnnouncements(res);
-    });
-  }, []);
-
-  return (
-    <div>
-      {announcements == null ? (
-        <p>No Announcements to Display...</p>
-      ) : (
-        announcements.data.map((item, index) => {
-          return (
-            <Announcement
-              tittle={item.tittle}
-              name={item.name}
-              date={item.date}
-              body={item.body}
-            ></Announcement>
-          );
-        })
-      )}
-    </div>
-  );
+export default function Home({ data }){
+    return (
+        <div>
+            <AnnouncementsPanel data={data} delete={false}></AnnouncementsPanel>
+        </div>
+    )
 }
+
+export async function getStaticProps(){
+  
+    const res = await fetch("http://localhost:3000/api/announcements")
+    const data = await res.json()
+  
+    return {
+      props: {
+        data
+      }
+    }
+  }

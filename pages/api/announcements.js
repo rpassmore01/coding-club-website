@@ -1,4 +1,5 @@
 const { connectToDatabase } = require("../../middleware/mongodb");
+import AnnouncementSubmission from "../../classes/announcementSubmission";
 
 export default async function handler(req, res) {
   const db = await connectToDatabase();
@@ -7,34 +8,48 @@ export default async function handler(req, res) {
       return getAnnouncements(req, res, db);
     }
     case "POST": {
-      return addAnnouncements(req, res, db);
+      return addAnnouncement(req, res, db);
     }
   }
 }
 
 async function getAnnouncements(req, res, db) {
   try {
-    const myDoc = await db
+    const announcements = await db
       .collection("announcements")
-      .find({ announcement: true })
+      .find({})
       .toArray();
-    return res.json(myDoc);
+    return res.status(200).json({
+      data: announcements,
+      success: true,
+    });
   } catch (err) {
-    return res.json({
+    return res.status(500).json({
       message: new Error(err).message,
       success: false,
     });
   }
 }
 
-async function addAnnouncements(req, res, db) {
+async function addAnnouncement(req, res, db) {
+  let submission;
   try {
-    await db.collection("announcements").insertOne(req.body);
-    return res.json({
+    submission = AnnouncementSubmission.parse(req.body);
+  } catch (err) {
+    console.log(err);
+    return res.status(400).json({
+      message: err.message,
+      success: false,
+    });
+  }
+  try {
+    await db.collection("announcements").insertOne(submission);
+    return res.status(200).json({
       success: true,
     });
   } catch (err) {
-    return res.json({
+    console.log(err);
+    return res.status(500).json({
       message: new Error(err).message,
       success: false,
     });

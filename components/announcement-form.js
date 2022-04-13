@@ -4,48 +4,64 @@ import { useState } from "react";
 
 export default function AnnouncementForm() {
   const [name, setName] = useState("");
-  const [tittle, setTittle] = useState("");
+  const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
-  function submitForm() {
-    const today = new Date();
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
+  function submitForm(e) {
+    e.preventDefault()
     axios.post("/api/announcements", {
-      tittle: tittle,
+      title: title,
       name: name,
       body: message,
-      date: today.toLocaleDateString(undefined, options),
-      announcement: true,
-    });
+    }).then(
+      location.reload()
+    ).catch(
+      (err) => {
+        console.log(err);
+      }
+    )
   }
 
   return (
     <div>
-      <form onSubmit={submitForm}>
-        <h2>Name:</h2>
-        <input
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-          className="border-solid border-2 border-black"
-        ></input>
-        <h2>Tittle:</h2>
-        <input
-          type="text"
-          onChange={(e) => setTittle(e.target.value)}
-          className="border-solid border-2 border-black"
-        ></input>
-        <h2>Body:</h2>
-        <input
-          type="text"
-          onChange={(e) => setMessage(e.target.value)}
-          className="border-solid border-2 border-black"
-        ></input>
-        <input type="submit"></input>
+      <form onSubmit={e => submitForm(e)}>
+        <div>
+          <label htmlFor="name">Name:</label>
+          <br />
+          <input
+            required
+            name="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="border-solid border-2 border-black"
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="title">Title:</label>
+          <br />
+          <input
+            required
+            name="title"
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            className="border-solid border-2 border-black"
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="body">Body:</label>
+          <br />
+          <input
+            required
+            name="body"
+            type="text"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            className="border-solid border-2 border-black"
+          ></input>
+        </div>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
