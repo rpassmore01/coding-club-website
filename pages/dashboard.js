@@ -1,23 +1,21 @@
 import AnnouncementForm from "../components/announcement-form";
 import AnnouncementsPanel from "../components/announcements-panel";
+import { Announcement } from "../schema.ts";
 
-export default function Dashboard({ data }) {
+export default function Dashboard({ announcements }) {
   return (
     <div>
       <AnnouncementForm></AnnouncementForm>
-      <AnnouncementsPanel data={data} delete={true}></AnnouncementsPanel>
+      <AnnouncementsPanel announcements={JSON.parse(announcements)} delete={true}></AnnouncementsPanel>
     </div>
   );
 }
 
-export async function getStaticProps(){
-  
-  const res = await fetch("http://localhost:3000/api/announcements")
-  const data = await res.json()
-
+export async function getServerSideProps(context) {
+  const announcements = JSON.stringify(await Announcement.find().lean());
   return {
     props: {
-      data
+      announcements
     }
-  }
+  };
 }

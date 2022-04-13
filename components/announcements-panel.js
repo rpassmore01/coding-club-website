@@ -2,14 +2,14 @@ import styles from "../styles/Home.module.css";
 import axios from "axios";
 import Announcement from "./announcement";
 
-function AnnouncementsPanel({ announcements }) {
+function AnnouncementsPanel(props) {
   return (
     <div>
-      {announcements == null ? (
+      {props.announcements == null ? (
         <p>No Announcements to Display...</p>
       ) : (
 
-        announcements.map((item, index) => {
+        props.announcements.map((item, index) => {
 
           return (
             <Announcement

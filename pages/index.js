@@ -7,7 +7,7 @@ import AnnouncementsPanel from "../components/announcements-panel";
 export default function Home({ announcements }) {
   return (
     <div>
-      <AnnouncementsPanel announcements={JSON.parse(announcements)}></AnnouncementsPanel>
+      <AnnouncementsPanel announcements={JSON.parse(announcements)} delete={false}></AnnouncementsPanel>
     </div>
   );
 }
