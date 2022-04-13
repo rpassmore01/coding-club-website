@@ -7,8 +7,12 @@ export default function AnnouncementForm() {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
-  function submitForm(e) {
-    e.preventDefault()
+  function submitForm(event) {
+    event.preventDefault();
+    setName('');
+    setTitle('');
+    setMessage('');
+
     axios.post("/api/announcements", {
       title: title,
       name: name,
