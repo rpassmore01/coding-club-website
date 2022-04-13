@@ -38,4 +38,5 @@ async function addAnnouncement(req, res) {
     data: announcement,
     success: true,
   });
+
 }

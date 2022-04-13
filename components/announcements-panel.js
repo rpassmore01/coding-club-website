@@ -8,7 +8,9 @@ function AnnouncementsPanel({ announcements }) {
       {announcements == null ? (
         <p>No Announcements to Display...</p>
       ) : (
+
         announcements.map((item, index) => {
+
           return (
             <Announcement
               title={item.title}
@@ -16,6 +18,8 @@ function AnnouncementsPanel({ announcements }) {
               date={item.date}
               body={item.body}
               key={index}
+              delete={props.delete}
+              id={item._id}
             ></Announcement>
           );
         })
