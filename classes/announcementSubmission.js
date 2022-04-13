@@ -14,28 +14,13 @@ export default class AnnouncementSubmission {
    */
   body;
 
-  /**
-   * The date of the announcement.
-   */
-  date;
-
-  constructor(title, name, body, date) {
+  constructor(title, name, body) {
     this.title = title;
     this.name = name;
     this.body = body;
-    this.date = date;
   }
 
   static parse(obj) {
-    const today = new Date();
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    const date = today.toLocaleDateString(undefined, options);
-
     if (obj === null || obj.constructor !== Object) {
       throw new Error("Bad submission: must be an object");
     }
@@ -81,6 +66,6 @@ export default class AnnouncementSubmission {
       );
     }
 
-    return new AnnouncementSubmission(title, name, body, date);
+    return new AnnouncementSubmission(title, name, body);
   }
 }
