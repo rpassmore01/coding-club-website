@@ -1,5 +1,4 @@
 import axios from "axios";
-import styles from "../styles/Home.module.css";
 
 export default function Announcement(props) {
 

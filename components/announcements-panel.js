@@ -1,5 +1,3 @@
-import styles from "../styles/Home.module.css";
-import axios from "axios";
 import Announcement from "./announcement";
 
 function AnnouncementsPanel(props) {
