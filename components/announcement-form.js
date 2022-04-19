@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-export default function AnnouncementForm() {
+export default function AnnouncementForm(props) {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
@@ -17,7 +17,7 @@ export default function AnnouncementForm() {
       name: name,
       body: message,
     }).then(
-      location.reload()
+      (res) => props.refreshData()
     ).catch(
       (err) => {
         console.log(err);

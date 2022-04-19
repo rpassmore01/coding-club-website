@@ -10,6 +10,7 @@ function AnnouncementsPanel(props) {
         props.announcements.map((item, index) => {
 
           return (
+            <div>
             <Announcement
               title={item.title}
               name={item.name}
@@ -18,7 +19,9 @@ function AnnouncementsPanel(props) {
               key={index}
               delete={props.delete}
               id={item._id}
+              refreshData={()=> props.refreshData()}
             ></Announcement>
+            </div>
           );
         })
       )}

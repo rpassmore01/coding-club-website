@@ -13,7 +13,7 @@ export default function Announcement(props) {
   const removeAnnouncement = () => {
     axios.delete(`/api/announcements/${props.id}`).then(
       (res) => {
-        location.reload()
+        props.refreshData()
       }
     ).catch(
       (err) => console.log(err)
