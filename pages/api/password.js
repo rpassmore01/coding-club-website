@@ -1,35 +1,26 @@
 const bcrypt = require("bcrypt");
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     switch (req.method) {
       case "POST": {
-        return checkPassword(req, res);
+        return await checkPassword(req, res);
       }
     }
   }
 
-function checkPassword(req, res){
+async function checkPassword(req, res){
     if(req.body.password){
-        bcrypt.compare(req.body.password, process.env.PASSWORD, (err, result) => {
-            if(err){
-                return res.status(500).json({
-                    success: false,
-                    message: err
-                })
-            }
-            else {
+        const result = await bcrypt.compare(req.body.password, process.env.PASSWORD);
                 if(result){
                     return res.status(200).json({
                         success: true
                     })
                 }
                 else {
-                    return res.status(200).json({
+                    return res.status(401).json({
                         success: false
                     })
                 }
-            }
-        })
     }
     else {
         return res.status(400).json({
