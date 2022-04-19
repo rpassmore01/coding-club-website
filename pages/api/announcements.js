@@ -25,7 +25,6 @@ async function addAnnouncement(req, res) {
   try {
     submission = AnnouncementSubmission.parse(req.body);
   } catch (err) {
-    console.log(err);
     return res.status(400).json({
       message: err.message,
       success: false,
