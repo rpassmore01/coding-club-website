@@ -9,7 +9,7 @@ export default function handler(req, res) {
   }
 
 function checkPassword(req, res){
-    if(req.body.password != null){
+    if(req.body.password){
         bcrypt.compare(req.body.password, process.env.PASSWORD, (err, result) => {
             if(err){
                 return res.status(500).json({
