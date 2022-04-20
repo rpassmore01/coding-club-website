@@ -1,6 +1,10 @@
 import axios from "axios";
+import { useState } from "react";
+import styles from"../styles/announcement.module.css"
+import useClickOutside from "../hooks/useOutsideClick";
 
 export default function Announcement(props) {
+  const { ref, isComponentVisible, setIsComponentVisible } = useClickOutside(false);
 
   const options = {
     weekday: "long",
@@ -27,7 +31,21 @@ export default function Announcement(props) {
         {props.name} posted on {date}
       </h4>
       <p className="text-lg">{props.body}</p>
-      {props.delete ? <button onClick={removeAnnouncement} className="text-red-500">Remove Announcement</button> : <p></p>}
+      <div>
+      {props.delete ? <button onClick={()=>setIsComponentVisible(true)} className="text-red-500">Remove Announcement</button> : <p></p>}
+      {isComponentVisible ? 
+      <div className={styles.popup} ref={ref}>
+        <p >Delete announcement?</p>
+        <div className="flex justify-evenly">
+        <button onClick={() => {
+          removeAnnouncement()
+          setIsComponentVisible(false)
+        }}>Yes</button>
+        <button onClick={()=>setIsComponentVisible(false)}>No</button>
+        </div>
+      </div> 
+      : <p></p>}
+      </div>
     </div>
   );
 }
