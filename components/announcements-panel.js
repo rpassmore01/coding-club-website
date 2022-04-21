@@ -6,11 +6,8 @@ function AnnouncementsPanel(props) {
       {props.announcements == null ? (
         <p>No Announcements to Display...</p>
       ) : (
-
         props.announcements.map((item, index) => {
-
           return (
-            <div>
             <Announcement
               title={item.title}
               name={item.name}
@@ -19,9 +16,8 @@ function AnnouncementsPanel(props) {
               key={index}
               delete={props.delete}
               id={item._id}
-              refreshData={()=> props.refreshData()}
+              refreshData={() => props.refreshData()}
             ></Announcement>
-            </div>
           );
         })
       )}
@@ -29,6 +25,4 @@ function AnnouncementsPanel(props) {
   );
 }
 
-
-
-export default AnnouncementsPanel
+export default AnnouncementsPanel;
