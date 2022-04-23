@@ -13,11 +13,11 @@ export default async function handler(req, res) {
 }
 
 async function getAnnouncements(req, res) {
-    const announcements = await Announcement.find().lean();
-    return res.status(200).json({
-      data: announcements,
-      success: true,
-    });
+  const announcements = await Announcement.find().lean();
+  return res.status(200).json({
+    data: announcements,
+    success: true,
+  });
 }
 
 async function addAnnouncement(req, res) {
@@ -31,11 +31,15 @@ async function addAnnouncement(req, res) {
     });
   }
 
-  const announcement = new Announcement({ name: submission.name, title: submission.title, body: submission.body, date: Date.now() });
+  const announcement = new Announcement({
+    name: submission.name,
+    title: submission.title,
+    body: submission.body,
+    date: Date.now(),
+  });
   await announcement.save();
   return res.status(200).json({
     data: announcement,
     success: true,
   });
-
 }

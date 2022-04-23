@@ -8,26 +8,25 @@ export default function AnnouncementForm(props) {
 
   function submitForm(event) {
     event.preventDefault();
-    setName('');
-    setTitle('');
-    setMessage('');
+    setName("");
+    setTitle("");
+    setMessage("");
 
-    axios.post("/api/announcements", {
-      title: title,
-      name: name,
-      body: message,
-    }).then(
-      (res) => props.refreshData()
-    ).catch(
-      (err) => {
+    axios
+      .post("/api/announcements", {
+        title: title,
+        name: name,
+        body: message,
+      })
+      .then((res) => props.refreshData())
+      .catch((err) => {
         console.log(err);
-      }
-    )
+      });
   }
 
   return (
     <div>
-      <form onSubmit={e => submitForm(e)}>
+      <form onSubmit={(e) => submitForm(e)}>
         <div>
           <label htmlFor="name">Name:</label>
           <br />
