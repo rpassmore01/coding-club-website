@@ -9,13 +9,10 @@ export default function Home({ announcements }) {
   return (
     <div>
       <TitlePage></TitlePage>
-      <div className="h-24"></div>
-      <div className={styles.wave}>
-        <AnnouncementsPanel
-          announcements={JSON.parse(announcements)}
-          delete={false}
-        ></AnnouncementsPanel>
-      </div>
+      <AnnouncementsPanel
+        announcements={JSON.parse(announcements)}
+        delete={false}
+      ></AnnouncementsPanel>
     </div>
   );
 }
