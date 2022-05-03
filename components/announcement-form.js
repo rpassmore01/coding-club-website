@@ -17,6 +17,7 @@ export default function AnnouncementForm(props) {
         title: title,
         name: name,
         body: message,
+        token: props.token
       })
       .then((res) => props.refreshData())
       .catch((err) => {

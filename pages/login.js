@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { Session } from "../schema.ts";
 
-export default function Password(props) {
+export default function Password({ authorized }) {
   const [password, setPassword] = useState("");
   const [incorrectPassword, setIncorrectPassword] = useState(false);
+  const router = useRouter();
 
   function FormSubmit(event) {
     event.preventDefault();
@@ -15,13 +18,17 @@ export default function Password(props) {
       })
       .then((res) => {
         if (res.data.success) {
-          props.setLoggedIn(res.data.success);
+          router.push("/dashboard")
         } else {
           setIncorrectPassword(true);
         }
       })
       .catch((err) => console.log(err));
   }
+
+  useEffect(() => {
+    if(authorized) router.push("/dashboard")
+  })
 
   return (
     <div>
@@ -45,4 +52,19 @@ export default function Password(props) {
       )}
     </div>
   );
+}
+
+export async function getServerSideProps(context){
+  let authorized = false;
+  if(context.req.cookies.session_id && context.req.cookies.csrf_token){
+    const sessionExsists = await Session.exists({session_id: context.req.cookies.session_id});
+    if(sessionExsists){
+    authorized = true
+    } 
+  }
+  return {
+    props: {
+      authorized: authorized,
+    },
+  };
 }

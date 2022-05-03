@@ -10,6 +10,12 @@ if (obj.value === undefined) {
       name: { type: String, required: true },
       body: { type: String, required: true },
       date: { type: Date, required: true }
+
+    })),
+    Session: mongoose.model('Session', new mongoose.Schema({
+      session_id: {type: String, required: true},
+      csrf_token: {type: String, required: true},
+      createdAt: {type: Date, expires: '900s', default: Date.now}
     }))
   });
 }

@@ -1,5 +1,5 @@
 import AnnouncementSubmission from "../../classes/announcementSubmission";
-import { Announcement } from "../../schema.ts";
+import { Announcement, Session } from "../../schema.ts";
 
 export default async function handler(req, res) {
   switch (req.method) {
@@ -21,7 +21,9 @@ async function getAnnouncements(req, res) {
 }
 
 async function addAnnouncement(req, res) {
-  let submission;
+  const session = await Session.find({session_id: req.cookies.session_id}).lean();
+  if(session[0] && req.cookies.csrf_token == session[0].csrf_token){
+    let submission;
   try {
     submission = AnnouncementSubmission.parse(req.body);
   } catch (err) {
@@ -42,4 +44,11 @@ async function addAnnouncement(req, res) {
     data: announcement,
     success: true,
   });
+  }
+  else {
+    res.status(401).json({
+      success: false,
+      error: "No valid session or csrf token."
+    })
+  }
 }

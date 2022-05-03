@@ -16,7 +16,10 @@ const handle = app.getRequestHandler();
 
   const dbUri = process.env.MONGODB_URI;
   console.log(`Connecting to MongoDB.`);
-  await mongoose.connect(dbUri);
+  await mongoose.connect(dbUri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
 
   createServer(async (req, res) => {
     try {
