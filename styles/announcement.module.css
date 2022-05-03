@@ -1,0 +1,10 @@
+.popup {
+  position: absolute;
+  background-color: rgb(197, 197, 197);
+  border-radius: 15px;
+  padding: 5px 20px;
+}
+
+.popup button {
+  cursor: pointer;
+}

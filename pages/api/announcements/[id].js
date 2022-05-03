@@ -1,6 +1,4 @@
-import mongoose from "mongoose";
-import AnnouncementSubmission from "../../../classes/announcementSubmission";
-import { Announcement } from "../../../schema.ts";
+import { Announcement, Session } from "../../../schema.ts";
 
 export default async function handler(req, res) {
   switch (req.method) {
@@ -39,7 +37,9 @@ async function getAnnouncement(req, res) {
 }
 
 async function deleteAnnouncement(req, res) {
-  let id;
+  const session = await Session.find({session_id: req.cookies.session_id}).lean();
+  if(session[0]){
+    let id;
   try {
     id = req.query.id;
     console.log(`DELETE ${id}`);
@@ -54,4 +54,11 @@ async function deleteAnnouncement(req, res) {
   return res.status(200).json({
     success: true,
   });
+  }
+  else {
+    return res.status(401).json({
+      success: false,
+      message: "No authorized session found."
+    })
+  }
 }

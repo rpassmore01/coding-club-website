@@ -58,6 +58,17 @@ export default class AnnouncementSubmission {
       throw new Error("Bad submission: body must be non-empty");
     }
 
+    if (!obj.hasOwnProperty("token")) {
+      throw new Error("Bad submission: token must be present");
+    } else if (obj.token === null || obj.token.constructor !== String) {
+      throw new Error("Bad submission: token must be a String");
+    }
+    const token = obj.token.trim();
+    delete obj.token;
+    if (token.length == 0) {
+      throw new Error("Bad submission: body must be non-empty");
+    }
+
     if (Object.getOwnPropertyNames(obj).length !== 0) {
       throw new Error(
         `Bad submission: unexpected properties: ${Object.getOwnPropertyNames(

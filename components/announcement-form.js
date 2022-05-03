@@ -1,34 +1,33 @@
-import styles from "../styles/Home.module.css";
 import axios from "axios";
 import { useState } from "react";
 
-export default function AnnouncementForm() {
+export default function AnnouncementForm(props) {
   const [name, setName] = useState("");
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
 
   function submitForm(event) {
     event.preventDefault();
-    setName('');
-    setTitle('');
-    setMessage('');
+    setName("");
+    setTitle("");
+    setMessage("");
 
-    axios.post("/api/announcements", {
-      title: title,
-      name: name,
-      body: message,
-    }).then(
-      location.reload()
-    ).catch(
-      (err) => {
+    axios
+      .post("/api/announcements", {
+        title: title,
+        name: name,
+        body: message,
+        token: props.token
+      })
+      .then((res) => props.refreshData())
+      .catch((err) => {
         console.log(err);
-      }
-    )
+      });
   }
 
   return (
     <div>
-      <form onSubmit={e => submitForm(e)}>
+      <form onSubmit={(e) => submitForm(e)}>
         <div>
           <label htmlFor="name">Name:</label>
           <br />
