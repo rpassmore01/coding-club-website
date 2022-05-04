@@ -2,7 +2,8 @@ import Announcement from "./announcement";
 import styles from "../styles/announcement-panel.module.css";
 
 function AnnouncementsPanel(props) {
-  return (
+    return (
+        <a id="announcement">
     <div className={styles.mainPanel}>
       <h2 className="self-start pl-7 text-3xl font-bold">Announcments</h2>
       <div className={styles.innerPanel}>
@@ -10,7 +11,8 @@ function AnnouncementsPanel(props) {
           <p>No Announcements to Display...</p>
         ) : (
           props.announcements.map((item, index) => {
-            return (
+              return (
+                  
               <Announcement
                 title={item.title}
                 name={item.name}
@@ -20,12 +22,14 @@ function AnnouncementsPanel(props) {
                 delete={props.delete}
                 id={item._id}
                 refreshData={() => props.refreshData()}
-              ></Announcement>
+                      ></Announcement>
+               
             );
           })
         )}
       </div>
-    </div>
+            </div>
+            </a>
   );
 }
 
