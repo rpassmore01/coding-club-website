@@ -63,8 +63,9 @@ export default function AnnouncementForm(props) {
             onChange={(e) => setMessage(e.target.value)}
             className="border-solid border-2 border-black"
           ></input>
-        </div>
-        <button type="submit">Submit</button>
+              </div>
+              
+              <div class = "pt-2"><button type="submit" class="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">Submit</button></div>
       </form>
     </div>
   );

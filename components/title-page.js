@@ -1,7 +1,9 @@
 export default function TitlePage() {
-  return (
-      <div className=" h-screen border-b border-gray-500 last:border-none flex w-7/12 mb-4b">
-          <div className="flex flex-col content-center justify-center p-20">
+    return (
+        <div className=" h-screen border-b border-gray-500 last:border-none flex w-7/12 mb-4b">
+
+            <div className="flex flex-col content-center justify-center p-20">
+
               <h2 className="text-5xl font-bold font-['Poppins'] px-1 py-1 text-light-gray">
                  Westmount Coding Club
              </h2>
@@ -16,12 +18,18 @@ export default function TitlePage() {
               </p>
               <a href="#announcement" class="pt-10 flex content-center justify-center">
               
-                  <button class="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full">
+                  <button class="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
                   
                   Announcements
                   
                   </button>
-                  </a>
+                </a>
+
+                <a href="http://localhost:3000/login" class = "pt-5">
+                    <button class="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
+                        Sign In
+                    </button>
+                </a>
     </div>
 
           <div className="">
