@@ -29,8 +29,9 @@ export default function Dashboard({ announcements, authorized, csrf_token }) {
   if (authorized) {
     return (
       <div>
-        <AnnouncementForm refreshData={() => refreshData()} token={csrf_token}></AnnouncementForm>
-        <button onClick={logout}>Logout</button>
+            <AnnouncementForm refreshData={() => refreshData()} token={csrf_token}></AnnouncementForm>
+            <div class="pt-2 pb-2"><button class="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']" onClick={logout}>Logout</button></div>
+        
         <AnnouncementsPanel
           refreshData={() => refreshData()}
           announcements={JSON.parse(announcements)}

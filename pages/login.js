@@ -43,7 +43,8 @@ export default function Password({ authorized }) {
           className="border-solid border-2 border-black"
         />
         <br />
-        <input type="submit"></input>
+
+              <div class = "pt-2"><input class="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']" type="submit"></input></div>
       </form>
       {incorrectPassword ? (
         <p className="text-red-500">The password you entered is incorrect.</p>
