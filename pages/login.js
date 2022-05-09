@@ -63,10 +63,10 @@ export default function Password({ authorized }) {
 export async function getServerSideProps(context) {
   let authorized = false;
   if (context.req.cookies.session_id && context.req.cookies.csrf_token) {
-    const sessionExsists = await Session.exists({
+    const sessionExists = await Session.exists({
       session_id: context.req.cookies.session_id,
     });
-    if (sessionExsists) {
+    if (sessionExists) {
       authorized = true;
     }
   }

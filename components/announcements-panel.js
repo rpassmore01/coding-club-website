@@ -20,7 +20,7 @@ function AnnouncementsPanel(props) {
     return (
             <div className={styles.mainPanel}>
                 
-                <h2 className="self-start pl-7 text-4xl font-bold pt-2 pb-2 font-['Poppins']">Announcments:
+                <h2 className="self-start pl-7 text-4xl font-bold pt-2 pb-2 font-['Poppins']">Announcements:
                     
                 </h2>
                 
@@ -46,7 +46,7 @@ function AnnouncementsPanel(props) {
               }
           })
         )}
-        <button onClick={showMore}>{showMoreText ? "Show more": "Show Less"}</button>
+        {props.announcements.length < 6? <p></p> : <button onClick={showMore}>{showMoreText ? "Show more": "Show Less"}</button>}
       </div>
             </div>
   );
