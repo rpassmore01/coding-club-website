@@ -15,7 +15,8 @@ if (obj.value === undefined) {
     Session: mongoose.model('Session', new mongoose.Schema({
       session_id: {type: String, required: true},
       csrf_token: {type: String, required: true},
-      createdAt: {type: Date, expires: '900s', default: Date.now}
+      //Moves time back 4 hours because function returns time in GMT
+      createdAt: {type: Date, expires: 900, default: Date.now()}
     }))
   });
 }

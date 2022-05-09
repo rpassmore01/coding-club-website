@@ -18,10 +18,11 @@ export default function Home({ announcements }) {
 }
 
 export async function getServerSideProps(context) {
-  const announcements = JSON.stringify(await Announcement.find().lean());
+  const announcements = await Announcement.find().lean();
+  const sortedAnnouncements = JSON.stringify(announcements.reverse());
   return {
     props: {
-      announcements,
+      announcements: sortedAnnouncements,
     },
   };
 }

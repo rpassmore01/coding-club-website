@@ -61,14 +61,15 @@ export async function getServerSideProps(context) {
   const session = await Session.find({
     session_id: context.req.cookies.session_id,
   }).lean();
-  const announcements = JSON.stringify(await Announcement.find().lean());
+  const announcements = await Announcement.find().lean();
+  const sortedAnnouncements = JSON.stringify(announcements.reverse());
   if (session[0]) {
     authorized = true;
     csrf_token = session[0].csrf_token;
   }
   return {
     props: {
-      announcements,
+      announcements: sortedAnnouncements,
       authorized: authorized,
       csrf_token: csrf_token,
     },

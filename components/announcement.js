@@ -24,7 +24,7 @@ export default function Announcement(props) {
   };
 
   return (
-    <div className=" border-b-[1px] border-gray-500 last:border-none flex flex-col w-10/12 mb-4">
+    <div className=" border-b-[1px] border-gray-500 last:border-none flex flex-col w-10/12 mb-4 truncate">
       <h2 className="text-3xl font-medium px-1 py-1 bg-med-blue rounded-md w-fit">
         {props.title}
       </h2>
