@@ -18,7 +18,7 @@ function AnnouncementsPanel(props) {
   }
 
     return (
-            <div className={styles.mainPanel}>
+            <div className={styles.mainPanel} id="announcements">
                 
                 <h2 className="self-start pl-7 text-4xl font-bold pt-2 pb-2 font-['Poppins']">Announcements:
                     

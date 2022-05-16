@@ -4,10 +4,12 @@ import { Announcement } from "../schema.ts";
 import AnnouncementsPanel from "../components/announcements-panel";
 import styles from "../styles/announcement-panel.module.css";
 import TitlePage from "../components/title-page";
+import Navbar from "../components/navbar";
 
 export default function Home({ announcements }) {
   return (
     <div>
+      <Navbar ></Navbar>
       <TitlePage></TitlePage>
       <AnnouncementsPanel
         announcements={JSON.parse(announcements)}
