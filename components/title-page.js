@@ -1,6 +1,8 @@
+import Link from "next/link";
 import styles from "../styles/title-page.module.css";
 export default function TitlePage() {
     return (
+      < >
         <div className=" h-screen border-b border-gray-500 last:border-none flex w-7/12 mb-4b">
 
             <div className="flex flex-col content-center justify-center p-20">
@@ -17,20 +19,22 @@ export default function TitlePage() {
               to code.
                  
               </p>
-              <a href="#announcement" class="pt-10 flex content-center justify-center">
+              <a href="#announcement" className="pt-10 flex content-center justify-center">
               
-                  <button class="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
+                  <button className="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
                   
                   Announcements
                   
                   </button>
                 </a>
 
-                <a href="/login" class = "pt-5">
-                    <button class="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
+                <Link href="/login">
+                <a className = "pt-5">
+                    <button className="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
                         Sign In
                     </button>
                 </a>
+                </Link>
     </div>
 
           <div className="">
@@ -44,7 +48,6 @@ export default function TitlePage() {
           data="/Programming-amico.svg"
         ></object>
         </div>
-  
-    </div>
+    </>
   );
 }
