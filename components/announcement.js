@@ -23,7 +23,8 @@ export default function Announcement(props) {
       .catch((err) => console.log(err));
   };
 
-  return (
+    return (
+     
     <div className=" border-b-[1px] border-gray-500 last:border-none flex flex-col w-10/12 mb-4">
       <h2 className="text-3xl font-medium px-1 py-1 bg-med-blue rounded-md w-fit">
         {props.title}
@@ -62,6 +63,7 @@ export default function Announcement(props) {
           <p></p>
         )}
       </div>
-    </div>
+            </div>
+           
   );
 }

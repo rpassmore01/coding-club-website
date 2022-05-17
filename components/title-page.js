@@ -25,7 +25,7 @@ export default function TitlePage() {
                   </button>
                 </a>
 
-                <a href="http://localhost:3000/login" class = "pt-5">
+                <a href="http://westmountcc.ca/login" class = "pt-5">
                     <button class="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
                         Sign In
                     </button>

@@ -4,11 +4,13 @@ import { useRouter } from "next/router";
 import { Session } from "../schema.ts";
 
 export default function Password({ authorized }) {
+    
   const [password, setPassword] = useState("");
   const [incorrectPassword, setIncorrectPassword] = useState(false);
   const router = useRouter();
 
-  function FormSubmit(event) {
+    function FormSubmit(event) {
+        
     event.preventDefault();
     setPassword("");
 
@@ -30,8 +32,11 @@ export default function Password({ authorized }) {
     if(authorized) router.push("/dashboard")
   })
 
-  return (
-    <div>
+        
+    return (
+        
+      <div>
+          
       <form onSubmit={(e) => FormSubmit(e)}>
         <label htmlFor="password">Enter Password:</label>
         <br />
@@ -50,9 +55,11 @@ export default function Password({ authorized }) {
         <p className="text-red-500">The password you entered is incorrect.</p>
       ) : (
         <p></p>
-      )}
-    </div>
-  );
+              )}
+             
+            </div>
+         
+      );
 }
 
 export async function getServerSideProps(context){
@@ -68,4 +75,5 @@ export async function getServerSideProps(context){
       authorized: authorized,
     },
   };
+        
 }
