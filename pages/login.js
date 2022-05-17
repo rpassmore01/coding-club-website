@@ -20,7 +20,7 @@ export default function Password({ authorized }) {
       })
       .then((res) => {
         if (res.data.success) {
-          router.push("/dashboard")
+          router.push("/dashboard");
         } else {
           setIncorrectPassword(true);
         }
@@ -29,8 +29,8 @@ export default function Password({ authorized }) {
   }
 
   useEffect(() => {
-    if(authorized) router.push("/dashboard")
-  })
+    if (authorized) router.push("/dashboard");
+  });
 
         
     return (
@@ -49,7 +49,12 @@ export default function Password({ authorized }) {
         />
         <br />
 
-              <div class = "pt-2"><input class="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']" type="submit"></input></div>
+        <div className="pt-2">
+          <input
+            className="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']"
+            type="submit"
+          ></input>
+        </div>
       </form>
       {incorrectPassword ? (
         <p className="text-red-500">The password you entered is incorrect.</p>
@@ -62,13 +67,15 @@ export default function Password({ authorized }) {
       );
 }
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   let authorized = false;
-  if(context.req.cookies.session_id && context.req.cookies.csrf_token){
-    const sessionExsists = await Session.exists({session_id: context.req.cookies.session_id});
-    if(sessionExsists){
-    authorized = true
-    } 
+  if (context.req.cookies.session_id && context.req.cookies.csrf_token) {
+    const sessionExists = await Session.exists({
+      session_id: context.req.cookies.session_id,
+    });
+    if (sessionExists) {
+      authorized = true;
+    }
   }
   return {
     props: {

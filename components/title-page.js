@@ -1,3 +1,4 @@
+import styles from "../styles/title-page.module.css";
 export default function TitlePage() {
     return (
         <div className=" h-screen border-b border-gray-500 last:border-none flex w-7/12 mb-4b">
@@ -25,7 +26,7 @@ export default function TitlePage() {
                   </button>
                 </a>
 
-                <a href="http://westmountcc.ca/login" class = "pt-5">
+                <a href="/login" class = "pt-5">
                     <button class="text-2xl w-full text pb-0.5 h-10 bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">
                         Sign In
                     </button>
@@ -35,11 +36,15 @@ export default function TitlePage() {
           <div className="">
               <object className="h-screen pl-20 " type="image/svg+xml" data="/Programming-amico.svg"></object>
           </div>
-          
-
-      
+         
       </div>
-
-
-     );
+      <div className={styles.svgHero}>
+        <object
+          type="image/svg+xml"
+          data="/Programming-amico.svg"
+        ></object>
+        </div>
+  
+    </div>
+  );
 }

@@ -17,7 +17,7 @@ export default function AnnouncementForm(props) {
         title: title,
         name: name,
         body: message,
-        token: props.token
+        token: props.token,
       })
       .then((res) => props.refreshData())
       .catch((err) => {
@@ -63,9 +63,16 @@ export default function AnnouncementForm(props) {
             onChange={(e) => setMessage(e.target.value)}
             className="border-solid border-2 border-black"
           ></input>
-              </div>
-              
-              <div class = "pt-2"><button type="submit" class="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']">Submit</button></div>
+        </div>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            className="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );
