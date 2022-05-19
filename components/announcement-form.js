@@ -17,7 +17,7 @@ export default function AnnouncementForm(props) {
         title: title,
         name: name,
         body: message,
-        token: props.token
+        token: props.token,
       })
       .then((res) => props.refreshData())
       .catch((err) => {
@@ -64,7 +64,15 @@ export default function AnnouncementForm(props) {
             className="border-solid border-2 border-black"
           ></input>
         </div>
-        <button type="submit">Submit</button>
+
+        <div className="pt-2">
+          <button
+            type="submit"
+            className="text-l w-40 text bg-royal-blue text-light-gray font-bold rounded-full font-['Poppins']"
+          >
+            Submit
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -9,6 +9,8 @@ Then you will need to fork this repo and clone it to your local machine.
 In a terminal window at the folder location for this project on your local machine run:
 
 ```bash
+npm install
+npm run build
 npm run start
 ```
 

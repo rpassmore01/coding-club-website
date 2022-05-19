@@ -44,7 +44,8 @@ async function checkPassword(req, res) {
         const csrfToken = await uid(20);
         const session = new Session({
           session_id: sessionId,
-          csrf_token: csrfToken
+          csrf_token: csrfToken,
+          createdAt: new Date()
         })
         await session.save();
         res.setHeader("Set-Cookie", [
